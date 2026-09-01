@@ -24,18 +24,7 @@
   </head>
 
   <body>
-    <header>
-      <nav>
-        <h1>
-          <%= link_to image_tag("logo.png"), root_path %>
-        </h1>
-        <ul>
-          <li>
-            <%= link_to "Movies", movies_path %>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <%= render "layouts/header" %>
     <div class="content">
       <%= yield %>
     </div>
