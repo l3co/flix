@@ -12,7 +12,7 @@ class Movie < ApplicationRecord
 
   validates :rating, inclusion: { in: RATINGS }
 
-  def self.flop?
+  def flop?
     total_gross < 225_000_000
   end
 
