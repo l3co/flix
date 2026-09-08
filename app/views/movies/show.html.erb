@@ -25,9 +25,10 @@
       </tr>
       <tr>
         <th>Reviews:</th>
-        <td><%= link_to pluralize(@movie.reviews.size, "review"), movie_reviews_path(@movie) %></td>
+        <td><%= average_stars(@movie) %></td>
       </tr>
     </table>
+    <%= link_to pluralize(@movie.reviews.size, "review"), movie_reviews_path(@movie) %>
     <%= link_to "Write Review", new_movie_review_path(@movie), class: "review" %>
   </div>
 </section>

@@ -10,4 +10,8 @@ class Review < ApplicationRecord
     in: STARS,
     message: "must be between 1 and 5"
   }
+
+  def average_stars
+    reviews.average(:stars) || 0.0
+  end
 end
