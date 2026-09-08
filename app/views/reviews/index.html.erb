@@ -2,22 +2,29 @@
   Reviews of <%= link_to @movie.title, movie_path(@movie) %>
 </h2>
 <div class="col col-12">
-  <% @reviews.each do |review| %>
-    <div class="card col-3">
-      <div class="card-title">
-        <h3 class="title p-2"><%= review.name %></h3>
-      </div>
-      <div class="card-body">
-        <p>
-          <%= review.comment %>
-        </p>
-        <p>
-          <strong>Rating:</strong> <%= "✭" * review.stars %>
-        </p>
-      </div>
-      <div class="card-footer">
-        <small>Reviewed on <%= review.created_at.strftime("%B %d, %Y") %></small>
-      </div>
-    </div>
-  <% end %>
+
+  <table class="table table-striped">
+    <% @reviews.each do |review| %>
+      <tr>
+        <th>Reviewer:</th>
+        <td><%= review.name %></td>
+      </tr>
+      <tr>
+        <th>Rating:</th>
+        <td><%= "✭" * review.stars %></td>
+      </tr>
+      <tr>
+        <th>Comment:</th>
+        <td><%= review.comment %></td>
+      </tr>
+      <tr>
+        <th>Reviewed on:</th>
+        <td><%= review.created_at.strftime("%B %d, %Y") %></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+        </td>
+      </tr>
+    <% end %>
+  </table>
 </div>
