@@ -3,10 +3,13 @@
     <h1>
       <%= link_to image_tag("logo.png"), root_path %>
     </h1>
-    <ul>
+    <ul class="left">
       <li>
         <%= link_to "Movies", movies_path %>
       </li>
+    </ul>
+    <ul class="right">
+      <li><%= link_to "Sign In", signup_path, class: "button" %></li>
     </ul>
   </nav>
 </header>
