@@ -23,6 +23,10 @@
   </div>
 
   <div class="actions">
-    <%= form.submit "Sign Up" %>
+    <% if user.new_record? %>
+      <%= form.submit "Sign Up" %>
+    <% else %>
+      <%= form.submit "Update Profile" %>
+    <% end %>
   </div>
 <% end %>
