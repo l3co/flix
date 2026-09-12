@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :require_login, except: [:new, :create]
+  before_action :require_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -24,11 +25,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to @user, notice: "Profile updated successfully."
     else
@@ -37,17 +36,19 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if session[:user_id] && session[:user_id] == params[:id].to_i
-      @user = User.find(params[:id])
-      @user.destroy
-      session[:user_id] = nil
-      redirect_to users_path, status: :see_other, notice: "User deleted successfully."
-    else
-      redirect_to users_path, status: :see_other, alert: "You can only delete your own account."
-    end
+    @user.destroy
+    session[:user_id] = nil
+    redirect_to users_path, status: :see_other, notice: "User deleted successfully."
   end
 
   private
+
+  def require_correct_user
+    @user = User.find(params[:id])
+    unless current_user?(@user)
+      redirect_to users_path, alert: "You can only edit your own account."
+    end
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)

@@ -2,8 +2,10 @@
   <h1><%= @user.name %></h1>
   <h2><%= mail_to(@user.email) %></h2>
   <p>Member since <%= time_ago_in_words(@user.created_at) %> ago</p>
-  <div class="actions">
-    <%= link_to "Edit", edit_user_path(@user), class: "button edit" %>
-    <%= link_to "Delete", @user, method: :delete, data: { confirm: "Are you sure?" }, class: "button delete" %>
-  </div>
+  <% if current_user?(@user) %>
+    <div class="actions">
+      <%= link_to "Edit", edit_user_path(@user), class: "button edit" %>
+      <%= link_to "Delete", @user, method: :delete, data: { confirm: "Are you sure?" }, class: "button delete" %>
+    </div>
+  <% end %>
 </section>
