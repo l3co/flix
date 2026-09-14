@@ -8,4 +8,13 @@
       <%= link_to "Delete", @user, method: :delete, data: { confirm: "Are you sure?" }, class: "button delete" %>
     </div>
   <% end %>
+  <% if @reviews.any? %>
+    <% @reviews.each do |review| %>
+      <section class="review">
+        <h2><%= link_to review.movie.title, review.movie %></h2>
+        <h3><%= review.user.name %></h3>
+        <p><%= review.comment %></p>
+      </section>
+    <% end %>
+  <% end %>
 </section>
